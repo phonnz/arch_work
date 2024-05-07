@@ -21,6 +21,13 @@ defmodule ArchWorkSonaWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/buildings", BuildingLive.Index, :index
+    live "/buildings/new", BuildingLive.Index, :new
+    live "/buildings/:id/edit", BuildingLive.Index, :edit
+
+    live "/buildings/:id", BuildingLive.Show, :show
+    live "/buildings/:id/show/edit", BuildingLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
