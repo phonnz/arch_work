@@ -1,0 +1,43 @@
+<.header>
+  Listing Units
+  <:actions>
+    <.link patch={~p"/units/new"}>
+      <.button>New Unit</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="units"
+  rows={@streams.units}
+  row_click={fn {_id, unit} -> JS.navigate(~p"/units/#{unit}") end}
+>
+  <:col :let={{_id, unit}} label="Name"><%= unit.name %></:col>
+  <:col :let={{_id, unit}} label="Sname"><%= unit.sname %></:col>
+  <:col :let={{_id, unit}} label="Description"><%= unit.description %></:col>
+  <:action :let={{_id, unit}}>
+    <div class="sr-only">
+      <.link navigate={~p"/units/#{unit}"}>Show</.link>
+    </div>
+    <.link patch={~p"/units/#{unit}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, unit}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: unit.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="unit-modal" show on_cancel={JS.patch(~p"/units")}>
+  <.live_component
+    module={ArchWorkSonaWeb.UnitLive.FormComponent}
+    id={@unit.id || :new}
+    title={@page_title}
+    action={@live_action}
+    unit={@unit}
+    patch={~p"/units"}
+  />
+</.modal>

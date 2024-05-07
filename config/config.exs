@@ -22,6 +22,9 @@ config :arch_work_sona, ArchWorkSonaWeb.Endpoint,
   pubsub_server: ArchWorkSona.PubSub,
   live_view: [signing_salt: "ehip9df8"]
 
+config :money,
+  default_currency: :EUR
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

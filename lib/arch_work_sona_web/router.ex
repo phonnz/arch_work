@@ -22,7 +22,7 @@ defmodule ArchWorkSonaWeb.Router do
 
     get "/", PageController, :home
 
-    e("/buildings", BuildingLive.Index, :index)
+    live("/buildings", BuildingLive.Index, :index)
     live "/buildings/new", BuildingLive.Index, :new
     live "/buildings/:id/edit", BuildingLive.Index, :edit
 
@@ -35,6 +35,20 @@ defmodule ArchWorkSonaWeb.Router do
 
     live "/budgets/:id", BudgetLive.Show, :show
     live "/budgets/:id/show/edit", BudgetLive.Show, :edit
+
+    live "/units", UnitLive.Index, :index
+    live "/units/new", UnitLive.Index, :new
+    live "/units/:id/edit", UnitLive.Index, :edit
+
+    live "/units/:id", UnitLive.Show, :show
+    live "/units/:id/show/edit", UnitLive.Show, :edit
+
+    live "/items", ItemLive.Index, :index
+    live "/items/new", ItemLive.Index, :new
+    live "/items/:id/edit", ItemLive.Index, :edit
+
+    live "/items/:id", ItemLive.Show, :show
+    live "/items/:id/show/edit", ItemLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
