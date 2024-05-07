@@ -7,7 +7,7 @@ import Config
 # Run `mix help test` for more information.
 config :arch_work_sona, ArchWorkSona.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "adminadmin",
   hostname: "localhost",
   database: "arch_work_sona_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
