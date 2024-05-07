@@ -1,4 +1,8 @@
 # ArchWorkSona
+This is a code example about Phoenix Framework web applications including Liveview feattures for real-time demostration.
+
+This project tries to expose a use case where a platform can help building construction industry, providing a platform
+where some resources like contructions materios and tools can be managed and build a budget that is being consumed in real-time.
 
 ![plot](./assets/img/project-structure.png)
 To start your Phoenix server:
