@@ -1,5 +1,6 @@
 # ArchWorkSona
 
+![plot](./assets/img/project-structure.png)
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
