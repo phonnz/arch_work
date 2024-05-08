@@ -6,6 +6,7 @@ defmodule ArchWorkSonaWeb.PostLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
+    if connected?(socket), do: Posts.subscribe()
     {:ok, stream(socket, :posts, Posts.list_posts())}
   end
 
@@ -36,6 +37,19 @@ defmodule ArchWorkSonaWeb.PostLive.Index do
   @impl true
   def handle_info({ArchWorkSonaWeb.PostLive.FormComponent, {:saved, post}}, socket) do
     {:noreply, stream_insert(socket, :posts, post)}
+  end
+
+  def handle_info({:created, post}, socket) do
+    {:noreply, stream(socket, :posts, Posts.list_posts())}
+  end
+
+  def handle_info({:updated, post}, socket) do
+    {:noreply, stream(socket, :posts, Posts.list_posts())}
+  end
+
+  def handle_info(something, socket) do
+    IO.inspect(something)
+    {:noreply, stream(socket, :posts, Posts.list_posts())}
   end
 
   @impl true

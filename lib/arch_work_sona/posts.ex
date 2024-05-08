@@ -8,6 +8,10 @@ defmodule ArchWorkSona.Posts do
 
   alias ArchWorkSona.Posts.Post
 
+  def subscribe do
+    Phoenix.PubSub.subscribe(ArchWorkSona.PubSub, "posts")
+  end
+
   @doc """
   Returns the list of posts.
 
@@ -53,6 +57,7 @@ defmodule ArchWorkSona.Posts do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:created)
   end
 
   @doc """
@@ -71,6 +76,16 @@ defmodule ArchWorkSona.Posts do
     post
     |> Post.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:updated)
+  end
+
+  defp broadcast({:ok, post}, event) do
+    Phoenix.PubSub.broadcast(ArchWorkSona.PubSub, "posts", {event, post})
+    {:ok, post}
+  end
+
+  defp broadcast({:error, _} = error, _event) do
+    error
   end
 
   @doc """
