@@ -5,6 +5,9 @@ This project tries to expose a use case where a platform can help building const
 where some resources like contructions materios and tools can be managed and build a budget that is being consumed in real-time.
 
 ![plot](./assets/img/project-structure.png)
+
+https://docs.google.com/presentation/d/1a_dsqDzkVBHVYkPPH_o-nSMjVPv0sVCRbOi5F0igP2w/edit?usp=sharing
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies

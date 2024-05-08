@@ -51,7 +51,7 @@ defmodule ArchWorkSonaWeb.PostLive.FormComponent do
   def handle_event("save", %{"post" => post_params}, socket) do
     params =
       Map.put(post_params, "author_id", socket.assigns.author_id)
-      |> Map.put("building_id", "d1035184-39c9-4cd3-844a-cb42591766d7")
+      |> Map.put("building_id", "fff220cf-1538-4abe-9a84-0801e5b5614a")
 
     save_post(socket, socket.assigns.action, params)
   end

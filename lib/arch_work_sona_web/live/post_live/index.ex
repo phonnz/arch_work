@@ -40,15 +40,10 @@ defmodule ArchWorkSonaWeb.PostLive.Index do
   end
 
   def handle_info({:created, post}, socket) do
-    {:noreply, stream(socket, :posts, Posts.list_posts())}
+    {:noreply, stream_insert(socket, :posts, post)}
   end
 
   def handle_info({:updated, post}, socket) do
-    {:noreply, stream(socket, :posts, Posts.list_posts())}
-  end
-
-  def handle_info(something, socket) do
-    IO.inspect(something)
     {:noreply, stream(socket, :posts, Posts.list_posts())}
   end
 
