@@ -18,4 +18,19 @@ defmodule ArchWorkSona.LocationsFixtures do
 
     building
   end
+
+  @doc """
+  Generate a comment.
+  """
+  def comment_fixture(attrs \\ %{}) do
+    {:ok, comment} =
+      attrs
+      |> Enum.into(%{
+        content: "some content",
+        up_votes: 42
+      })
+      |> ArchWorkSona.Locations.create_comment()
+
+    comment
+  end
 end
