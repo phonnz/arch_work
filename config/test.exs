@@ -5,23 +5,23 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :arch_work, ArchWork.Repo,
+config :arch_work_sona, ArchWorkSona.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "adminadmin",
   hostname: "localhost",
-  database: "arch_work_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "arch_work_sona_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :arch_work, ArchWorkWeb.Endpoint,
+config :arch_work_sona, ArchWorkSonaWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "VHmDsYLsNMEKOtj0Yg8FMX4SN8s1PUTk1b7PQCLUlGZ4GRU7ahN6/o3mbtPu7ZQA",
+  secret_key_base: "fW5AuBYEL3X5FqUhu021ydOCCtwQtZZ/GwNqzme4L6h8Yg8y2E1lJF1KxdjdDe6l",
   server: false
 
 # In test we don't send emails.
-config :arch_work, ArchWork.Mailer, adapter: Swoosh.Adapters.Test
+config :arch_work_sona, ArchWorkSona.Mailer, adapter: Swoosh.Adapters.Test
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false

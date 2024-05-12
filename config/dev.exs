@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :arch_work, ArchWork.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "adminadmin",
   hostname: "localhost",
   database: "arch_work_dev",
   stacktrace: true,
