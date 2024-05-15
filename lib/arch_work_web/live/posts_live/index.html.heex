@@ -1,0 +1,42 @@
+<.header>
+  Listing Posts
+  <:actions>
+    <.link patch={~p"/posts/new"}>
+      <.button>New Posts</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="posts"
+  rows={@streams.posts_collection}
+  row_click={fn {_id, posts} -> JS.navigate(~p"/posts/#{posts}") end}
+>
+  <:col :let={{_id, posts}} label="Content"><%= posts.content %></:col>
+  <:col :let={{_id, posts}} label="Votes"><%= posts.votes %></:col>
+  <:action :let={{_id, posts}}>
+    <div class="sr-only">
+      <.link navigate={~p"/posts/#{posts}"}>Show</.link>
+    </div>
+    <.link patch={~p"/posts/#{posts}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, posts}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: posts.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="posts-modal" show on_cancel={JS.patch(~p"/posts")}>
+  <.live_component
+    module={ArchWorkWeb.PostsLive.FormComponent}
+    id={@posts.id || :new}
+    title={@page_title}
+    action={@live_action}
+    posts={@posts}
+    patch={~p"/posts"}
+  />
+</.modal>

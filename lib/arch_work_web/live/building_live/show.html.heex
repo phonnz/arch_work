@@ -1,0 +1,29 @@
+<.header>
+  Building <%= @building.id %>
+  <:subtitle>This is a building record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/buildings/#{@building}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit building</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @building.name %></:item>
+  <:item title="Address"><%= @building.address %></:item>
+  <:item title="Start date"><%= @building.start_date %></:item>
+  <:item title="End date"><%= @building.end_date %></:item>
+</.list>
+
+<.back navigate={~p"/buildings"}>Back to buildings</.back>
+
+<.modal :if={@live_action == :edit} id="building-modal" show on_cancel={JS.patch(~p"/buildings/#{@building}")}>
+  <.live_component
+    module={ArchWorkWeb.BuildingLive.FormComponent}
+    id={@building.id}
+    title={@page_title}
+    action={@live_action}
+    building={@building}
+    patch={~p"/buildings/#{@building}"}
+  />
+</.modal>
