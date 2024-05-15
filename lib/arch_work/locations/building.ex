@@ -7,10 +7,10 @@ defmodule ArchWork.Locations.Building do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "buildings" do
-    field :name, :string, null: false
+    field :name, :string
     field :address, :string
-    field :start_date, :date, null: false
-    field :end_date, :date, null: false
+    field :start_date, :date
+    field :end_date, :date
     has_many :posts, Post
 
     timestamps(type: :utc_datetime)
